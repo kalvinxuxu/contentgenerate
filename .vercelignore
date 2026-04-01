@@ -1,0 +1,7 @@
+backend/
+api/
+src/
+config/
+*.py
+requirements.txt
+Dockerfile
