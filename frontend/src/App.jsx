@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 
-const API_BASE = 'http://localhost:8002'
+// 支持环境变量配置 API 地址
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8002'
 
 // 莫兰迪粉彩配色
 const colors = {
@@ -165,7 +166,9 @@ function App() {
 
   // 连接 WebSocket
   const connectWebSocket = (id) => {
-    const ws = new WebSocket(`ws://localhost:8002/ws/task/${id}`)
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+    const wsHost = import.meta.env.VITE_WS_BASE || API_BASE.replace(/^http/, 'ws').replace(':8002', ':8002')
+    const ws = new WebSocket(`${wsHost}/ws/task/${id}`)
 
     ws.onopen = () => console.log('WebSocket 已连接')
     ws.onmessage = (event) => {

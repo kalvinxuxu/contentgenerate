@@ -53,6 +53,7 @@ test_output/
 results/
 *.json
 !pyproject.toml
+!vercel.json
 
 # 前端依赖
 frontend/node_modules/
