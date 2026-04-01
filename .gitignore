@@ -54,10 +54,13 @@ results/
 *.json
 !pyproject.toml
 !vercel.json
+!fly.toml
+
+# Fly.io
+.fly/
 
 # 前端依赖
 frontend/node_modules/
 
-# 后端依赖
-backend/venv/
-.venv/
+# Docker
+.Dockerfile

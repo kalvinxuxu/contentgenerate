@@ -1,0 +1,40 @@
+# Fly.io 应用配置
+app = "contentgenerate"
+
+# 区域（选择离你最近的）
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8002"
+  ANTHROPIC_API_KEY = "sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  # MINIMAX_API_KEY = "sk-xxxxx"  # 可选：图片生成
+  DEFAULT_MODEL = "claude-sonnet-4-6"
+  TEMPERATURE = "0.7"
+  MAX_TOKENS = "2048"
+
+[http_service]
+  internal_port = 8002
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 250
+    soft_limit = 200
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    timeout = "5s"
+    path = "/health"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512
