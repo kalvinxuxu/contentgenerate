@@ -1,0 +1,97 @@
+# Agent 模型配置 - Claude API
+models:
+  default: &default
+    model: "qwen3.5-plus"
+    temperature: 0.7
+    max_tokens: 2048
+
+  # 调研 Agent - 需要较强的分析能力
+  research:
+    <<: *default
+    temperature: 0.7
+    max_tokens: 4096
+
+  # 创作 Agent - 需要较高的创造力
+  creator:
+    <<: *default
+    temperature: 0.8
+    max_tokens: 3072
+
+  # 审核 Agent - 需要严格、客观
+  reviewer:
+    <<: *default
+    temperature: 0.3
+    max_tokens: 2048
+
+  # 优化 Agent - 平衡创造力和准确性
+  optimizer:
+    <<: *default
+    temperature: 0.5
+    max_tokens: 3072
+
+  # 配图 Agent - 需要创意想象力
+  image:
+    <<: *default
+    temperature: 0.7
+    max_tokens: 2048
+
+# 平台配置
+platforms:
+  wechat:
+    name: "微信公众号"
+    cover_ratio: "16:9"
+    style: "大气、专业"
+
+  xiaohongshu:
+    name: "小红书"
+    cover_ratio: "3:4"
+    style: "清新、生活化"
+
+  blog:
+    name: "博客"
+    cover_ratio: "16:9"
+    style: "与文章调性一致"
+
+# 文案类型
+content_types:
+  social_media: "社交媒体文案"
+  marketing: "营销文案"
+  professional: "专业文章"
+
+# LLM 后端配置
+llm_backend:
+  # 可选：anthropic, dashscope
+  provider: "anthropic"
+
+  # Claude 模型映射
+  claude_models:
+    opus: "claude-opus-4-6"
+    sonnet: "claude-sonnet-4-6"
+    haiku: "claude-haiku-4-5-20251001"
+
+  # 重试配置
+  retry:
+    max_retries: 3
+    base_delay: 1.0
+    max_delay: 60.0
+
+# Minimax 图片生成配置
+minimax:
+  # API 端点
+  endpoint: "https://api.minimaxi.com/v1/image_generation"
+  # 默认模型
+  model: "image-01"
+  # 默认生成图片数量
+  default_num_images: 1
+  # 最大生成数量
+  max_num_images: 4
+  # 重试配置
+  retry:
+    max_retries: 2
+    delay: 5
+  # 平台默认宽高比
+  platform_aspect_ratios:
+    xiaohongshu: "3:4"
+    wechat: "16:9"
+    blog: "16:9"
+    default: "1:1"
