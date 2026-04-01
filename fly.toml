@@ -9,9 +9,9 @@ primary_region = "sin"
 
 [env]
   PORT = "8002"
-  ANTHROPIC_API_KEY = "sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   # MINIMAX_API_KEY = "sk-xxxxx"  # 可选：图片生成
-  DEFAULT_MODEL = "claude-sonnet-4-6"
+  # MINIMAX_BASE_URL = "https://api.minimax.chat/v1"
+  DEFAULT_MODEL = "qwen-max"
   TEMPERATURE = "0.7"
   MAX_TOKENS = "2048"
 
